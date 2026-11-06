@@ -1,0 +1,31 @@
+{
+  "cellSize": [
+    32,
+    32
+  ],
+  "frames": 4,
+  "rows": [
+    "idle",
+    "talking",
+    "working",
+    "analyzing",
+    "waiting_info",
+    "reviewing",
+    "waiting_approval",
+    "pass",
+    "warning",
+    "fail",
+    "retrying",
+    "email_sent"
+  ],
+  "deliverables": [
+    "doc_requirements",
+    "doc_feedback",
+    "doc_solution",
+    "doc_validation_pass",
+    "doc_validation_warn",
+    "doc_validation_fail",
+    "doc_quotation",
+    "doc_email"
+  ]
+}

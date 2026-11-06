@@ -1,0 +1,296 @@
+{
+  "desk_pc": {
+    "w": 96,
+    "h": 64,
+    "foot": 40,
+    "kind": "floor"
+  },
+  "desk_laptop": {
+    "w": 96,
+    "h": 64,
+    "foot": 40,
+    "kind": "floor"
+  },
+  "desk_manager": {
+    "w": 128,
+    "h": 64,
+    "foot": 40,
+    "kind": "floor"
+  },
+  "meeting_table": {
+    "w": 160,
+    "h": 72,
+    "foot": 52,
+    "kind": "floor"
+  },
+  "coffee_table_glass": {
+    "w": 64,
+    "h": 40,
+    "foot": 24,
+    "kind": "floor"
+  },
+  "reception_desk": {
+    "w": 128,
+    "h": 64,
+    "foot": 36,
+    "kind": "floor"
+  },
+  "chair_down": {
+    "w": 32,
+    "h": 44,
+    "foot": 16,
+    "kind": "floor"
+  },
+  "chair_up": {
+    "w": 32,
+    "h": 44,
+    "foot": 16,
+    "kind": "floor"
+  },
+  "sofa_down": {
+    "w": 112,
+    "h": 52,
+    "foot": 40,
+    "kind": "floor"
+  },
+  "sofa_up": {
+    "w": 112,
+    "h": 52,
+    "foot": 40,
+    "kind": "floor"
+  },
+  "sofa_left": {
+    "w": 52,
+    "h": 96,
+    "foot": 80,
+    "kind": "floor"
+  },
+  "bookshelf": {
+    "w": 96,
+    "h": 96,
+    "foot": 24,
+    "kind": "floor"
+  },
+  "filing_cabinet": {
+    "w": 32,
+    "h": 52,
+    "foot": 20,
+    "kind": "floor"
+  },
+  "water_cooler": {
+    "w": 28,
+    "h": 60,
+    "foot": 16,
+    "kind": "floor"
+  },
+  "coffee_machine": {
+    "w": 44,
+    "h": 60,
+    "foot": 24,
+    "kind": "floor"
+  },
+  "printer": {
+    "w": 48,
+    "h": 52,
+    "foot": 24,
+    "kind": "floor"
+  },
+  "fridge": {
+    "w": 36,
+    "h": 72,
+    "foot": 20,
+    "kind": "floor"
+  },
+  "kitchen_counter": {
+    "w": 96,
+    "h": 60,
+    "foot": 26,
+    "kind": "floor"
+  },
+  "trash_bin": {
+    "w": 20,
+    "h": 24,
+    "foot": 10,
+    "kind": "floor"
+  },
+  "plant_big": {
+    "w": 40,
+    "h": 64,
+    "foot": 14,
+    "kind": "floor"
+  },
+  "plant_small": {
+    "w": 26,
+    "h": 34,
+    "foot": 10,
+    "kind": "floor"
+  },
+  "coat_rack": {
+    "w": 28,
+    "h": 68,
+    "foot": 8,
+    "kind": "floor"
+  },
+  "floor_lamp": {
+    "w": 20,
+    "h": 64,
+    "foot": 8,
+    "kind": "floor"
+  },
+  "fire_extinguisher": {
+    "w": 14,
+    "h": 28,
+    "foot": 6,
+    "kind": "floor"
+  },
+  "glass_partition_h": {
+    "w": 96,
+    "h": 44,
+    "foot": 8,
+    "kind": "floor"
+  },
+  "glass_partition_v": {
+    "w": 12,
+    "h": 96,
+    "foot": 96,
+    "kind": "floor"
+  },
+  "window_city": {
+    "w": 64,
+    "h": 56,
+    "foot": 0,
+    "kind": "wall"
+  },
+  "whiteboard": {
+    "w": 96,
+    "h": 52,
+    "foot": 0,
+    "kind": "wall"
+  },
+  "tv": {
+    "w": 88,
+    "h": 52,
+    "foot": 0,
+    "kind": "wall"
+  },
+  "wall_clock": {
+    "w": 22,
+    "h": 22,
+    "foot": 0,
+    "kind": "wall"
+  },
+  "painting": {
+    "w": 48,
+    "h": 36,
+    "foot": 0,
+    "kind": "wall"
+  },
+  "bulletin_board": {
+    "w": 56,
+    "h": 40,
+    "foot": 0,
+    "kind": "wall"
+  },
+  "glass_door": {
+    "w": 64,
+    "h": 64,
+    "foot": 0,
+    "kind": "wall"
+  },
+  "desk_consultation": {
+    "w": 136,
+    "h": 54,
+    "foot": 34,
+    "kind": "floor"
+  },
+  "desk_solution": {
+    "w": 136,
+    "h": 54,
+    "foot": 34,
+    "kind": "floor"
+  },
+  "desk_validation": {
+    "w": 136,
+    "h": 54,
+    "foot": 34,
+    "kind": "floor"
+  },
+  "desk_quotation": {
+    "w": 136,
+    "h": 54,
+    "foot": 34,
+    "kind": "floor"
+  },
+  "server_rack_gpu": {
+    "w": 44,
+    "h": 82,
+    "foot": 24,
+    "kind": "floor"
+  },
+  "hw_bench": {
+    "w": 92,
+    "h": 54,
+    "foot": 26,
+    "kind": "floor"
+  },
+  "validation_tower_idle": {
+    "w": 24,
+    "h": 64,
+    "foot": 12,
+    "kind": "floor"
+  },
+  "validation_tower_pass": {
+    "w": 24,
+    "h": 64,
+    "foot": 12,
+    "kind": "floor"
+  },
+  "validation_tower_warn": {
+    "w": 24,
+    "h": 64,
+    "foot": 12,
+    "kind": "floor"
+  },
+  "validation_tower_fail": {
+    "w": 24,
+    "h": 64,
+    "foot": 12,
+    "kind": "floor"
+  },
+  "mail_station": {
+    "w": 56,
+    "h": 56,
+    "foot": 22,
+    "kind": "floor"
+  },
+  "orchestrator_hub": {
+    "w": 136,
+    "h": 62,
+    "foot": 34,
+    "kind": "floor"
+  },
+  "board_requirements": {
+    "w": 96,
+    "h": 48,
+    "foot": 0,
+    "kind": "wall"
+  },
+  "board_architecture": {
+    "w": 96,
+    "h": 48,
+    "foot": 0,
+    "kind": "wall"
+  },
+  "board_compat": {
+    "w": 96,
+    "h": 48,
+    "foot": 0,
+    "kind": "wall"
+  },
+  "board_pricing": {
+    "w": 96,
+    "h": 48,
+    "foot": 0,
+    "kind": "wall"
+  }
+}
