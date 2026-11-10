@@ -1,0 +1,507 @@
+{
+  "_meta": {
+    "version": "2.1.1",
+    "published": "2026-06-09",
+    "publisher": "TechFuel HQ",
+    "publisher_url": "https://techfuelhq.com/",
+    "license": "CC BY 4.0",
+    "license_url": "https://creativecommons.org/licenses/by/4.0/",
+    "attribution_required": "TechFuelHQ PC Builder Parts Dataset (CC BY 4.0). https://techfuelhq.com/tools/pc-builder/",
+    "note": "2026-09-08 correction: the ram-ddr5-32gb-6000 note now distinguishes the kit EXPO overclocking profile from stock CPU memory support. AMD Ryzen 5 9600X specifications list DDR5-5600 with two DIMMs (https://www.amd.com/en/products/processors/desktops/ryzen/9000-series/amd-ryzen-5-9600x.html); the exact non-RGB G.Skill kit lists EXPO and compatibility-dependent rated speed (https://www.newegg.com/g-skill-trident-z5-neo-series-32gb-ddr5-6000-cas-latency-cl30-desktop-memory-black/p/N82E16820374422). Both pages read September 8, 2026. 2026-08-01 (v2.1.0): all prices removed - see price_removal. The 97 expansion rows lost their fields at v2.0.0; the 29 pre-expansion rows followed the same day after review of their mixed retailer provenance. The removed figures were live Amazon.com street prices observed 2026-07-29; the rows' specifications and their 'source' specification-page URLs are unchanged and remain individually verifiable. Original expansion record: 97 parts added and one retired on 2026-07-29 (30 -> 126 parts); every added row carries a 'source' field naming the manufacturer, Newegg or B&H specification page its specs were read from; any candidate whose specs could not be confirmed against a page that was actually retrieved was dropped rather than estimated (41 candidates dropped); several vendor sites (TechPowerUp, Kingston, Crucial, MSI, Gigabyte, Zotac, PNY, AMD product pages) refused automated retrieval, so those brands are under-represented and NVIDIA add-in-board rows skew toward ASUS; PCIe lane counts are recorded only where a retrieved page stated them explicitly. Original pre-expansion sourcing: manufacturer pages, TechPowerUp, Tom's Hardware, and verified retailer listings. Performance tier estimates are TechFuelHQ editorial assessments based on aggregate review consensus, not first-party benchmarks (except where the part appears in a TechFuelHQ Open Bench Dataset, in which case the tier is anchored to first-party data). 2026-08-30: Intel K-SKU tdp_w changed from Processor Base Power to Maximum Turbo Power. The PC Builder sums tdp_w as the power the chip actually draws, and every K-SKU held the 125 W base figure, so PSU sizing ran a retail size light. Values are Intel's published MTP. Non-K Intel rows (Core Ultra 5 225/225F, 65 W base) were NOT changed - their MTP was not verified in this pass and is recorded as open rather than guessed. 2026-09-29 correction (v2.1.1): every AM5 CPU's supported_chipsets now lists all AM5 chipsets AMD names (X870E, X870, B850, B840, X670E, X670, A620, A620A, plus B650). AMD's AM5 chipset page says all Socket AM5 motherboards are compatible with all Socket AM5 processors, with a BIOS update possibly required for Ryzen 8000 and 9000 on 600-series boards (https://www.amd.com/en/products/processors/chipsets/am5.html, read 2026-09-29). The old four-chipset list made the PC Builder flag every AM5 CPU on the A620A board as incompatible.",
+    "compatibility_rules": [
+      "CPU and motherboard must share socket (AM5, LGA1851, LGA1700)",
+      "Motherboard chipset must be in cpu.supported_chipsets (e.g. AM5 X870E supports Ryzen 7000+9000; B650 supports Ryzen 7000+9000 with BIOS update)",
+      "Motherboard ram_type must match RAM ram_type (DDR5 only at this generation)",
+      "PSU wattage must exceed sum of CPU TDP + GPU TGP + 150W system overhead, with 20% margin",
+      "Case form_factor must accept motherboard form_factor (ATX > mATX > ITX)",
+      "Case max_gpu_length_mm must exceed GPU length_mm",
+      "Storage interface (NVMe Gen5 / Gen4 / SATA) must match a free motherboard slot"
+    ],
+    "price_removal": {
+      "date": "2026-08-01",
+      "removed": "price_usd, price_source, price_asin from the 97 rows added 2026-07-29 (v2.0.0), then price_usd from the 29 pre-expansion rows (v2.1.0) - the dataset now carries no prices at all",
+      "reason": "The 97 expansion prices were Amazon.com street-price observations. The 29 original prices were reviewed same-day under the same policy reading: their own v1.0 methodology note lists Amazon among the retailer sources and no per-row attribution exists to separate which figures came from where, so a row cannot be cleared as non-Amazon on the evidence available. As an Amazon Associates participant, TechFuelHQ displays Amazon price data only through Amazon's approved mechanisms.",
+      "unaffected": "All specifications, compatibility fields, spec-source URLs and last_verified dates, on every row.",
+      "planned": "Re-pricing of the whole dataset under a per-row provenance schema from clean sources (manufacturer MSRP or a single attributed retailer), so every future price carries its own price_source."
+    }
+  },
+  "synced_at": "2026-11-10T08:07:47Z",
+  "total_synced": 14,
+  "available_kr_count": 13,
+  "items": [
+    {
+      "part_id": "cpu-r5-9600x",
+      "category": "cpu",
+      "vendor": "AMD",
+      "model_name_en": "Ryzen 5 9600X",
+      "performance_tier": "mid",
+      "danawa_pcode": "62794079",
+      "model_name_kr": "AMD 라이젠5-6세대 9600X (그래니트 릿지)(멀티팩 정품)",
+      "lowest_price_krw": 258530,
+      "is_available_kr": true,
+      "danawa_url": "https://prod.danawa.com/info/?pcode=62794079",
+      "image_url": "https://img.danuri.io/catalog-image/079/794/062/a21e7ef2993f4154ba69804f7264dde5.jpg?shrink=160:160&_v=20261110170701",
+      "review_count": 50,
+      "star_point": "4.8",
+      "search_query": "AMD 9600X",
+      "match_score": 80.0,
+      "specs": {
+        "cores": 6,
+        "threads": 12,
+        "boost_ghz": 5.4,
+        "tdp_w": 65,
+        "socket": "AM5",
+        "ram_type": "DDR5",
+        "supported_chipsets": [
+          "X870E",
+          "X870",
+          "B850",
+          "B840",
+          "X670E",
+          "X670",
+          "B650",
+          "A620",
+          "A620A"
+        ]
+      },
+      "use_cases": [
+        "1080p gaming",
+        "1440p gaming",
+        "productivity"
+      ],
+      "notes": "The mainstream gaming pick of the 9000-series stack. Pairs well with B850 boards.",
+      "spec_last_verified": "2026-07-24",
+      "price_updated_at": "2026-11-10T08:07:47Z"
+    },
+    {
+      "part_id": "cpu-r7-9700x",
+      "category": "cpu",
+      "vendor": "AMD",
+      "model_name_en": "Ryzen 7 9700X",
+      "performance_tier": "high",
+      "danawa_pcode": "62794082",
+      "model_name_kr": "AMD 라이젠7-6세대 9700X (그래니트 릿지)(멀티팩 정품)",
+      "lowest_price_krw": 392950,
+      "is_available_kr": true,
+      "danawa_url": "https://prod.danawa.com/info/?pcode=62794082",
+      "image_url": "https://img.danuri.io/catalog-image/082/794/062/87e11a2d022646898224f79f01fc402b.jpg?shrink=160:160&_v=20261110170456",
+      "review_count": 39,
+      "star_point": "4.8",
+      "search_query": "AMD 9700X",
+      "match_score": 78.9,
+      "specs": {
+        "cores": 8,
+        "threads": 16,
+        "boost_ghz": 5.5,
+        "tdp_w": 65,
+        "socket": "AM5",
+        "ram_type": "DDR5",
+        "supported_chipsets": [
+          "X870E",
+          "X870",
+          "B850",
+          "B840",
+          "X670E",
+          "X670",
+          "B650",
+          "A620",
+          "A620A"
+        ]
+      },
+      "use_cases": [
+        "1440p gaming",
+        "4K gaming",
+        "productivity",
+        "streaming"
+      ],
+      "notes": "The mid-range gaming + productivity pick. Cooler stays quiet at 65W default; PBO unlocks more.",
+      "spec_last_verified": "2026-07-24",
+      "price_updated_at": "2026-11-10T08:07:47Z"
+    },
+    {
+      "part_id": "gpu-rtx-5060-ti-16gb",
+      "category": "gpu",
+      "vendor": "NVIDIA AIB",
+      "model_name_en": "RTX 5060 Ti 16GB",
+      "performance_tier": "mid",
+      "danawa_pcode": "81990338",
+      "model_name_kr": "MSI 지포스 RTX 5060 Ti 벤투스 2X OC 플러스 D7 16GB",
+      "lowest_price_krw": 1271980,
+      "is_available_kr": true,
+      "danawa_url": "https://prod.danawa.com/info/?pcode=81990338",
+      "image_url": "https://img.danuri.io/catalog-image/338/990/081/867f4911300b42288da263db7abb270f.jpg?shrink=160:160&_v=20261110170408",
+      "review_count": 25,
+      "star_point": "4.6",
+      "search_query": "RTX 5060 Ti 16GB",
+      "match_score": 112.5,
+      "specs": {
+        "vram_gb": 16,
+        "tgp_w": 180,
+        "length_mm": 280,
+        "pcie": "Gen5 x8"
+      },
+      "use_cases": [
+        "1080p ultra",
+        "1440p high"
+      ],
+      "notes": "1440p sweet spot in 2026. 16GB VRAM future-proofs against texture growth. See TechFuelHQ 5060 Ti vs 9060 XT review.",
+      "spec_last_verified": "2026-07-24",
+      "price_updated_at": "2026-11-10T08:07:47Z"
+    },
+    {
+      "part_id": "gpu-rx-9060-xt-16gb",
+      "category": "gpu",
+      "vendor": "AMD AIB",
+      "model_name_en": "RX 9060 XT 16GB",
+      "performance_tier": "mid",
+      "danawa_pcode": "91909571",
+      "model_name_kr": "SAPPHIRE 라데온 RX 9060 XT PULSE OC D6 16GB",
+      "lowest_price_krw": 817410,
+      "is_available_kr": true,
+      "danawa_url": "https://prod.danawa.com/info/?pcode=91909571",
+      "image_url": "https://img.danuri.io/catalog-image/571/909/091/87f5413db20d43e6a87ec2445ecf58c1.jpg?shrink=160:160&_v=20261110170400",
+      "review_count": 38,
+      "star_point": "5.0",
+      "search_query": "RX 9060 XT 16GB",
+      "match_score": 113.8,
+      "specs": {
+        "vram_gb": 16,
+        "tgp_w": 150,
+        "length_mm": 270,
+        "pcie": "Gen5 x16"
+      },
+      "use_cases": [
+        "1080p ultra",
+        "1440p high"
+      ],
+      "notes": "Best 1440p value in 2026 if FSR4 quality is acceptable. Lower power than the 5060 Ti.",
+      "spec_last_verified": "2026-07-24",
+      "price_updated_at": "2026-11-10T08:07:47Z"
+    },
+    {
+      "part_id": "mb-b650-tomahawk",
+      "category": "motherboard",
+      "vendor": "MSI",
+      "model_name_en": "B650 Tomahawk WiFi",
+      "performance_tier": null,
+      "danawa_pcode": "17971181",
+      "model_name_kr": "MSI MAG B650 토마호크 WIFI",
+      "lowest_price_krw": 253480,
+      "is_available_kr": true,
+      "danawa_url": "https://prod.danawa.com/info/?pcode=17971181",
+      "image_url": "https://img.danuri.io/catalog-image/181/971/017/4adf0a80dad4487683828eab0d973c0d.jpg?shrink=160:160&_v=20261110170746",
+      "review_count": 40,
+      "star_point": "4.7",
+      "search_query": "MSI B650 Tomahawk WiFi",
+      "match_score": 84.0,
+      "specs": {
+        "socket": "AM5",
+        "chipset": "B650",
+        "form_factor": "ATX",
+        "ram_type": "DDR5",
+        "ram_slots": 4,
+        "ram_max_gb": 192,
+        "m2_slots": 3,
+        "pcie_gen": "Gen4"
+      },
+      "use_cases": [
+        "budget AM5",
+        "mid-tier AM5"
+      ],
+      "notes": "Best B650 value in 2026. Solid VRMs for any Ryzen 7000/9000 short of the 9950X3D.",
+      "spec_last_verified": "2026-07-24",
+      "price_updated_at": "2026-11-10T08:07:47Z"
+    },
+    {
+      "part_id": "mb-b850-edge",
+      "category": "motherboard",
+      "vendor": "MSI",
+      "model_name_en": "B850 Edge WiFi",
+      "performance_tier": null,
+      "danawa_pcode": "74814380",
+      "model_name_kr": "MSI MPG B850 엣지 TI WIFI",
+      "lowest_price_krw": 363820,
+      "is_available_kr": true,
+      "danawa_url": "https://prod.danawa.com/info/?pcode=74814380",
+      "image_url": "https://img.danuri.io/catalog-image/380/814/074/eff8b74de9984549a9c94aeb255d29a6.jpg?shrink=160:160&_v=20261110170547",
+      "review_count": 6,
+      "star_point": "5.0",
+      "search_query": "MSI B850 Edge WiFi",
+      "match_score": 80.6,
+      "specs": {
+        "socket": "AM5",
+        "chipset": "B850",
+        "form_factor": "ATX",
+        "ram_type": "DDR5",
+        "ram_slots": 4,
+        "ram_max_gb": 256,
+        "m2_slots": 4,
+        "pcie_gen": "Gen5"
+      },
+      "use_cases": [
+        "mid-tier AM5",
+        "high-tier AM5"
+      ],
+      "notes": "PCIe 5.0 for the primary GPU slot and primary NVMe. Worth the bump from B650 if you're building 2026+ forward.",
+      "spec_last_verified": "2026-07-24",
+      "price_updated_at": "2026-11-10T08:07:47Z"
+    },
+    {
+      "part_id": "ram-ddr5-32gb-6000",
+      "category": "ram",
+      "vendor": "G.Skill",
+      "model_name_en": "Trident Z5 Neo 32GB (2x16GB) DDR5-6000 CL30",
+      "performance_tier": null,
+      "danawa_pcode": "17931836",
+      "model_name_kr": "G.SKILL DDR5-6000 CL30 TRIDENT Z5 NEO RGB J 패키지(32GB(16Gx2))",
+      "lowest_price_krw": 1077000,
+      "is_available_kr": true,
+      "danawa_url": "https://prod.danawa.com/info/?pcode=17931836",
+      "image_url": "https://img.danuri.io/catalog-image/836/931/017/66dc663561ae4621b708bf09a1ec4f70.jpg?shrink=160:160&_v=20261110091305",
+      "review_count": 12,
+      "star_point": "4.9",
+      "search_query": "G.Skill Trident Z5 Neo 32GB DDR5-6000 CL30",
+      "match_score": 156.2,
+      "specs": {
+        "capacity_gb": 32,
+        "kit": "2x16GB",
+        "speed_mtps": 6000,
+        "cas_latency": 30,
+        "ram_type": "DDR5"
+      },
+      "use_cases": [
+        "AM5 sweet spot",
+        "mid-tier"
+      ],
+      "notes": "DDR5-6000 CL30 is the kit's EXPO overclocking profile. Stock memory settings depend on the CPU and motherboard; AMD lists DDR5-5600 for a Ryzen 5 9600X with two DIMMs. Check the board's QVL and test stability after enabling EXPO.",
+      "spec_last_verified": "2026-07-24",
+      "price_updated_at": "2026-11-10T08:07:47Z"
+    },
+    {
+      "part_id": "ram-ddr5-64gb-6000",
+      "category": "ram",
+      "vendor": "G.Skill",
+      "model_name_en": "Trident Z5 Neo 64GB (2x32GB) DDR5-6000 CL30",
+      "performance_tier": null,
+      "danawa_pcode": "40572260",
+      "model_name_kr": "G.SKILL DDR5-6000 CL30 TRIDENT Z5 NEO RGB J 패키지(64GB(32Gx2))",
+      "lowest_price_krw": 2300000,
+      "is_available_kr": true,
+      "danawa_url": "https://prod.danawa.com/info/?pcode=40572260",
+      "image_url": "https://img.danuri.io/catalog-image/260/572/040/e4aae1eaac3e4847bfc259cf7115af7f.jpg?shrink=160:160&_v=20261110165028",
+      "review_count": 12,
+      "star_point": "4.9",
+      "search_query": "G.Skill Trident Z5 Neo 64GB DDR5-6000 CL30",
+      "match_score": 156.2,
+      "specs": {
+        "capacity_gb": 64,
+        "kit": "2x32GB",
+        "speed_mtps": 6000,
+        "cas_latency": 30,
+        "ram_type": "DDR5"
+      },
+      "use_cases": [
+        "productivity",
+        "VMs",
+        "content creation"
+      ],
+      "notes": "64GB at 6000 CL30 is the new content-creator default. Don't go above 2 sticks on AM5 — IMC stability falls off with 4 sticks.",
+      "spec_last_verified": "2026-07-24",
+      "price_updated_at": "2026-11-10T08:07:47Z"
+    },
+    {
+      "part_id": "ssd-sn850x-2tb",
+      "category": "storage",
+      "vendor": "WD",
+      "model_name_en": "Black SN850X 2TB",
+      "performance_tier": null,
+      "danawa_pcode": "17788451",
+      "model_name_kr": "Western Digital WD BLACK SN850X M.2 NVMe(2TB)",
+      "lowest_price_krw": 747000,
+      "is_available_kr": true,
+      "danawa_url": "https://prod.danawa.com/info/?pcode=17788451",
+      "image_url": "https://img.danuri.io/catalog-image/451/788/017/64094bd6cfbc4b4f989e526d3d5be143.jpg?shrink=160:160&_v=20261110133042",
+      "review_count": 298,
+      "star_point": "4.9",
+      "search_query": "WD Black SN850X 2TB",
+      "match_score": 105.0,
+      "specs": {
+        "capacity_gb": 2000,
+        "interface": "NVMe Gen4 x4",
+        "form_factor": "M.2 2280",
+        "read_mbps": 7300,
+        "write_mbps": 6600
+      },
+      "use_cases": [
+        "OS drive",
+        "game library",
+        "general"
+      ],
+      "notes": "Reliable Gen4 default. 2TB is the sane minimum in 2026 with 100GB+ AAA game installs.",
+      "spec_last_verified": "2026-07-24",
+      "price_updated_at": "2026-11-10T08:07:47Z"
+    },
+    {
+      "part_id": "ssd-t705-2tb",
+      "category": "storage",
+      "vendor": "Crucial",
+      "model_name_en": "T705 2TB",
+      "performance_tier": null,
+      "danawa_pcode": "71427998",
+      "model_name_kr": "마이크론 Crucial T705 히트싱크 화이트 에디션 M.2 NVMe 대원씨티에스(2TB)",
+      "lowest_price_krw": 687390,
+      "is_available_kr": true,
+      "danawa_url": "https://prod.danawa.com/info/?pcode=71427998",
+      "image_url": "https://img.danuri.io/catalog-image/998/427/071/95ab577b612a423880c91c1ae42b0203.jpg?shrink=160:160&_v=20261110080453",
+      "review_count": 0,
+      "star_point": "0",
+      "search_query": "Crucial T705 2TB",
+      "match_score": 80.0,
+      "specs": {
+        "capacity_gb": 2000,
+        "interface": "NVMe Gen5 x4",
+        "form_factor": "M.2 2280",
+        "read_mbps": 14500,
+        "write_mbps": 12700
+      },
+      "use_cases": [
+        "content creation",
+        "DirectStorage gaming"
+      ],
+      "notes": "Gen5 only matters for sequential workloads (video scrub, large file IO). For gaming, Gen4 is fine. Runs hot — needs heatsink.",
+      "spec_last_verified": "2026-07-24",
+      "price_updated_at": "2026-11-10T08:07:47Z"
+    },
+    {
+      "part_id": "psu-750w-gold",
+      "category": "psu",
+      "vendor": "Corsair",
+      "model_name_en": "RM750x (2024) 750W 80+ Gold",
+      "performance_tier": null,
+      "danawa_pcode": null,
+      "model_name_kr": null,
+      "lowest_price_krw": null,
+      "is_available_kr": false,
+      "danawa_url": null,
+      "image_url": null,
+      "review_count": null,
+      "star_point": null,
+      "search_query": "Corsair RM750x 750W 80+ Gold",
+      "match_score": null,
+      "specs": {
+        "wattage_w": 750,
+        "efficiency": "80+ Gold",
+        "form_factor": "ATX 3.1",
+        "modular": "Fully modular",
+        "pcie_5_connectors": 1
+      },
+      "use_cases": [
+        "mid-tier",
+        "single-GPU under 300W TGP"
+      ],
+      "notes": "Right-size for 9700X + 5070 Ti class builds. ATX 3.1 + 12V-2x6 connector for current GPUs.",
+      "spec_last_verified": "2026-07-24",
+      "price_updated_at": "2026-11-10T08:07:47Z"
+    },
+    {
+      "part_id": "psu-850w-gold",
+      "category": "psu",
+      "vendor": "Corsair",
+      "model_name_en": "RM850x (2024) 850W 80+ Gold",
+      "performance_tier": null,
+      "danawa_pcode": "5524355",
+      "model_name_kr": "CORSAIR RM850x 화이트 80PLUS골드",
+      "lowest_price_krw": 197000,
+      "is_available_kr": true,
+      "danawa_url": "https://prod.danawa.com/info/?pcode=5524355",
+      "image_url": "https://img.danuri.io/catalog-image/355/524/005/4a7813722eba4457a9eaf8e095367733.jpg?shrink=160:160&_v=20261110080510",
+      "review_count": 3,
+      "star_point": "3.6",
+      "search_query": "Corsair RM850x 850W 80+ Gold",
+      "match_score": 65.3,
+      "specs": {
+        "wattage_w": 850,
+        "efficiency": "80+ Gold",
+        "form_factor": "ATX 3.1",
+        "modular": "Fully modular",
+        "pcie_5_connectors": 1
+      },
+      "use_cases": [
+        "high-tier",
+        "5070 Ti / 5080 class"
+      ],
+      "notes": "850W gives headroom for 5080-class GPUs with transient spike margin. Default for most 2026 mid-to-high builds.",
+      "spec_last_verified": "2026-07-24",
+      "price_updated_at": "2026-11-10T08:07:47Z"
+    },
+    {
+      "part_id": "case-h7-flow",
+      "category": "case",
+      "vendor": "NZXT",
+      "model_name_en": "H7 Flow (2024)",
+      "performance_tier": null,
+      "danawa_pcode": "77379554",
+      "model_name_kr": "NZXT H7 Flow V2(매트 블랙)",
+      "lowest_price_krw": 217900,
+      "is_available_kr": true,
+      "danawa_url": "https://prod.danawa.com/info/?pcode=77379554",
+      "image_url": "https://img.danuri.io/catalog-image/554/379/077/1b48c7f269924fa193a0f699d20e3b09.jpg?shrink=160:160&_v=20261110160748",
+      "review_count": 3,
+      "star_point": "5.0",
+      "search_query": "NZXT H7 Flow",
+      "match_score": 80.3,
+      "specs": {
+        "form_factor": "ATX",
+        "supports_form_factors": [
+          "ATX",
+          "mATX",
+          "ITX"
+        ],
+        "max_gpu_length_mm": 410,
+        "max_cpu_cooler_mm": 185
+      },
+      "use_cases": [
+        "mid-tier",
+        "high-tier",
+        "airflow"
+      ],
+      "notes": "Best mainstream airflow case in 2026. Fits any GPU up to 410mm — including the long ROG Astral 5080.",
+      "spec_last_verified": "2026-07-24",
+      "price_updated_at": "2026-11-10T08:07:47Z"
+    },
+    {
+      "part_id": "case-meshify-2",
+      "category": "case",
+      "vendor": "Fractal",
+      "model_name_en": "Meshify 2 Compact",
+      "performance_tier": null,
+      "danawa_pcode": "13489595",
+      "model_name_kr": "Fractal Design Meshify 2 Compact(블랙)",
+      "lowest_price_krw": 186000,
+      "is_available_kr": true,
+      "danawa_url": "https://prod.danawa.com/info/?pcode=13489595",
+      "image_url": "https://img.danuri.io/catalog-image/595/489/013/e95a079b8cf84c3b9d5af659b369c1e3.jpg?shrink=160:160&_v=20261110165016",
+      "review_count": 4,
+      "star_point": "5.0",
+      "search_query": "Fractal Meshify 2 Compact",
+      "match_score": 80.4,
+      "specs": {
+        "form_factor": "ATX",
+        "supports_form_factors": [
+          "ATX",
+          "mATX",
+          "ITX"
+        ],
+        "max_gpu_length_mm": 341,
+        "max_cpu_cooler_mm": 169
+      },
+      "use_cases": [
+        "mid-tier",
+        "smaller footprint"
+      ],
+      "notes": "Smaller than the H7 Flow but still ATX. GPU length cap at 341mm means careful with the longest cards (Astral 5080 at 358mm will NOT fit).",
+      "spec_last_verified": "2026-06-09",
+      "price_updated_at": "2026-11-10T08:07:47Z"
+    }
+  ]
+}
