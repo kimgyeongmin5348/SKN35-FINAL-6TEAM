@@ -1,6 +1,5 @@
-"""Connection to the existing, separate PC parts research database.
+"""Connection to the local dev_database PC parts database.
 
-BUILDWISE's application database continues to use app.core.db.Database.
 PARTS_MYSQL_* settings take precedence. A complete legacy MYSQL_* configuration
 is accepted for the original local development database only.
 """
@@ -16,7 +15,7 @@ ENV_PATH = Path(__file__).resolve().parents[3] / ".env"
 
 
 def connection_settings() -> dict:
-    """Read settings without mutating the environment of the team application."""
+    """Read settings without changing the process environment."""
     settings = {**dotenv_values(ENV_PATH, interpolate=False), **os.environ}
     if any(key.startswith("PARTS_MYSQL_") for key in settings):
         prefix = "PARTS_MYSQL_"
@@ -24,7 +23,7 @@ def connection_settings() -> dict:
         prefix = "MYSQL_"
     else:
         raise ValueError(
-            ".env에 PARTS_MYSQL_* 부품 DB 설정을 입력해 주세요. docs/DATA_PIPELINE.md 참고."
+            ".env에 PARTS_MYSQL_* 부품 DB 설정을 입력해 주세요. docs/database/README.md 참고."
         )
 
     password = settings.get(prefix + "PASSWORD")
@@ -39,9 +38,7 @@ def connection_settings() -> dict:
 
     database = settings.get(prefix + "DATABASE") or "dev_database"
     if database != "dev_database":
-        raise ValueError(
-            "부품 수집 DB는 dev_database만 허용합니다. 팀 서비스 DB 설정과 분리하세요."
-        )
+        raise ValueError("부품 수집 DB는 dev_database만 허용합니다.")
     return {
         "host": settings.get(prefix + "HOST") or "127.0.0.1",
         "port": port,

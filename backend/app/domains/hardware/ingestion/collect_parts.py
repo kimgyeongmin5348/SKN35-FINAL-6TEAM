@@ -77,7 +77,7 @@ def collect_danawa(matches, run_dir):
     cli = TOOLS / "node_modules" / "danawa-cli" / "bin" / "danawa.mjs"
     if not executable or not cli.exists():
         raise ValueError(
-            "Node.js와 scripts/data/tools의 danawa-cli를 설치하세요. docs/DATA_PIPELINE.md 참고."
+            "Node.js와 scripts/data/tools의 danawa-cli를 설치하세요. docs/database/README.md 참고."
         )
     installed = read_json(cli.parents[1] / "package.json")["version"]
     if installed != "3.0.0":

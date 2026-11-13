@@ -7,9 +7,9 @@ import unittest
 from pathlib import Path
 from unittest.mock import patch
 
-from app.core.parts_database import connection_settings
-from app.db.parts_schema import SCHEMA_PATH
-from app.db.render_parts_erd import ERD
+from app.db.connection import connection_settings
+from app.db.render_erd import ERD
+from app.db.schema import SCHEMA_PATH
 from app.domains.hardware.ingestion.common import read_json
 from app.domains.hardware.ingestion.paths import DATA, REPO_ROOT, TOOLS
 
@@ -19,7 +19,7 @@ class SettingsTests(unittest.TestCase):
         self.directory = tempfile.TemporaryDirectory()
         self.addCleanup(self.directory.cleanup)
         self.env = Path(self.directory.name) / ".env"
-        self.env_patch = patch("app.core.parts_database.ENV_PATH", self.env)
+        self.env_patch = patch("app.db.connection.ENV_PATH", self.env)
         self.env_patch.start()
         self.addCleanup(self.env_patch.stop)
         self.environment = patch.dict(os.environ, {}, clear=True)
@@ -99,7 +99,10 @@ class LayoutTests(unittest.TestCase):
         self.assertTrue(SCHEMA_PATH.is_file())
         self.assertEqual(SCHEMA_PATH.parent, REPO_ROOT / "backend/app/db/sql")
         self.assertTrue((TOOLS / "package-lock.json").is_file())
-        self.assertTrue((ERD / "schema.mmd").is_file())
+        self.assertEqual(ERD, REPO_ROOT / "docs/database/erd")
+        for extension in ("mmd", "dot", "svg", "png"):
+            with self.subTest(extension=extension):
+                self.assertTrue((ERD / f"schema.{extension}").is_file())
 
 
 if __name__ == "__main__":

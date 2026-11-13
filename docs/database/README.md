@@ -1,18 +1,8 @@
 # PC 부품 데이터 관리
 
 MySQL `dev_database`의 8개 테이블과 실제 부품·호환성 수집 자료를 관리합니다.
-팀 `main`의 폴더 규칙에 맞춰 코드·데이터·문서를 나눴습니다. 모든 명령은 저장소 루트에서 실행합니다.
+모든 명령은 저장소 루트에서 실행합니다. 로컬 MySQL은 Docker 없이 사용합니다.
 `--directory backend`는 실행 위치와 Python 환경을 함께 백엔드로 지정합니다.
-
-## 팀 서비스와의 관계
-
-- 팀 서비스: `app.core.db`, `app.db.models`, `backend/migrations/`, `buildwise` DB.
-- 기존 부품 수집 DB: `app.core.parts_database`, `app.db.parts_schema`, `dev_database` DB.
-- 이번 변경은 기존 스키마와 데이터를 유지하는 파일 재배치입니다. 서비스의 Alembic 이력과 API 계약은 변경하지 않았습니다.
-- 수집 DB의 `parts`를 팀 서비스의 `products`로 자동 복사하지 않습니다. 기업별 `company_id`, 상품 유형,
-  검증 상태 매핑을 합의한 뒤 어댑터와 필요한 Alembic 마이그레이션으로 연결해야 합니다.
-- `data/fixtures/`는 팀 Mock 견본, `data/hardware/`는 실제 수집 자료입니다.
-- 부품 DB는 로컬 MySQL에서 별도 실행합니다. 팀 Docker Compose가 이 DB를 생성하거나 초기 데이터를 넣지 않습니다.
 
 ## 로컬 DB 설정
 
@@ -29,9 +19,8 @@ PARTS_MYSQL_PASSWORD='직접 입력'
 ```
 
 설정 우선순위는 같은 키의 프로세스 환경변수 → 루트 `.env`입니다. 비밀번호의 `${...}`는 치환하지 않습니다.
-`PARTS_MYSQL_*`가 하나라도 있으면 해당 설정만 사용하며 Docker의 `MYSQL_PASSWORD`와 섞지 않습니다.
+`PARTS_MYSQL_*`가 하나라도 있으면 해당 설정만 사용합니다.
 기존 `.env`의 `MYSQL_DATABASE=dev_database`와 `MYSQL_*` 설정도 호환됩니다.
-팀 Docker까지 함께 사용할 때는 기존 5개 `MYSQL_*` 키를 `PARTS_MYSQL_*`로 바꿔 두세요.
 비밀번호가 비어 있거나 DB 이름이 `dev_database`가 아니면 접속을 중단합니다.
 연결 확인 명령은 `SELECT DATABASE(), VERSION()`만 실행하며 비밀번호를 출력하지 않습니다.
 비밀번호는 루트 `.env`를 읽습니다. 비밀번호를 데이터 파일이나 실행 인자에 쓰지 않습니다.
@@ -41,10 +30,10 @@ PARTS_MYSQL_PASSWORD='직접 입력'
 ```powershell
 # Python 환경 준비 / DB 연결 확인
 uv sync --directory backend --frozen
-uv run --directory backend --frozen python -X utf8 -m app.db.parts_schema
+uv run --directory backend --frozen python -X utf8 -m app.db.schema
 
 # 최초 생성. 기존 데이터 삭제나 컬럼 자동 변경을 수행하지 않음
-uv run --directory backend --frozen python -X utf8 -m app.db.parts_schema --init
+uv run --directory backend --frozen python -X utf8 -m app.db.schema --init
 
 # 미리보기: 원본을 정리하고 보고서를 만들며 DB에는 쓰지 않음
 uv run --directory backend --frozen python -X utf8 -m app.domains.hardware.ingestion.import_parts
@@ -58,10 +47,10 @@ uv run --directory backend --frozen python -X utf8 -m app.domains.hardware.inges
 uv run --directory backend --frozen python -X utf8 -m app.domains.hardware.ingestion.check_data
 ```
 
-DBeaver에서도 `backend/app/db/sql/parts_catalog.sql` 전체를 SQL 스크립트로 실행할 수 있습니다.
+DBeaver에서도 [최초 생성 SQL](../../backend/app/db/sql/parts_catalog.sql) 전체를 실행할 수 있습니다.
 대상 스키마는 `dev_database`입니다. 생성 후 탐색기에서 새로고침하면 됩니다.
 `CREATE TABLE IF NOT EXISTS`는 이미 존재하는 테이블을 새 구조로 변경하지 않습니다.
-나중에 컬럼을 수정할 때는 별도의 변경 SQL과 ERD 갱신이 필요합니다.
+기존 테이블에 첫 변경이 생기면 `backend/app/db/sql/migrations/`에 변경 SQL을 추가하고 ERD를 갱신합니다.
 MySQL의 테이블 생성 DDL은 전체 롤백이 되지 않습니다. 데이터 가져오기는 트랜잭션으로 처리합니다.
 
 ## 수집 환경과 갱신
@@ -92,18 +81,19 @@ uv run --directory backend --frozen python -X utf8 -m app.domains.hardware.inges
 
 | 위치 (저장소 루트 기준) | 내용 |
 |---|---|
-| `backend/app/core/parts_database.py` | 별도 부품 DB 연결 및 환경변수 |
-| `backend/app/db/parts_schema.py` | 연결 확인 및 기존 스키마 최초 생성 CLI |
+| `backend/app/db/connection.py` | 로컬 MySQL 연결 및 환경변수 |
+| `backend/app/db/schema.py` | 연결 확인 및 최초 테이블 생성 CLI |
 | `backend/app/db/sql/parts_catalog.sql` | 기존 8개 테이블의 PK·FK·CHECK·인덱스 |
 | `backend/app/domains/hardware/ingestion/` | 수집·가격 추출·부품/호환성 가져오기·무결성 점검 |
 | `backend/tests/hardware_data/` | 정규화·가격·호환성·경로·설정 및 MySQL 제약 검증 |
 | `scripts/data/tools/` | danawa-cli 3.0.0과 npm lockfile |
 | `data/hardware/part_matches.json` | 원본 ID, 제품 식별, 선택 상품코드, 검토 상태 |
+| `data/hardware/reviewed_specs_overrides.json` | 수동 검토 원본은 보존하고, 적용할 사양 보정과 제조사 출처 키를 지정 |
 | `data/hardware/raw/` | PC Builder 원본, 다나와 응답/HTML, 제조사 수동 검토, manifest |
 | `data/hardware/processed/` | 가져오기에 사용하는 정규화 결과 |
 | `data/hardware/reports/` | 실행 보고서, 무결성 점검, DB 부품 스냅샷 |
-| `docs/erd/parts_catalog/` | `.mmd`, `.svg`, `.png`, Graphviz 원본 |
-| `backend/app/db/render_parts_erd.py` | 기존 SQL을 읽어 ERD 생성 |
+| `docs/database/erd/` | Mermaid, Graphviz, SVG, PNG |
+| `backend/app/db/render_erd.py` | 스키마 SQL을 읽어 ERD 생성 |
 
 아래의 `raw/`, `processed/`, `reports/`, `part_matches.json`은 모두 `data/hardware/` 기준입니다.
 manifest의 상대 경로는 이 기준 디렉터리 내부를 가리키므로 기존 수집 이력을 그대로 사용할 수 있습니다.
@@ -200,13 +190,13 @@ MSI A850GS는 PSU 쪽 포트 수와 GPU용 동봉 케이블 수를 구분하여 
 
 ## ERD와 테스트
 
-ERD 재생성에는 Graphviz의 `dot` 명령이 필요합니다.
+생성된 ERD는 [SVG](erd/schema.svg) 또는 [PNG](erd/schema.png)로 볼 수 있습니다. 재생성에는 Graphviz의 `dot` 명령이 필요합니다.
 그림은 `backend/app/db/sql/parts_catalog.sql`에서 컬럼을 추출하고 관계를 점선으로 그립니다.
-SQL의 FK를 추가·변경할 경우 `backend/app/db/render_parts_erd.py`의 관계 목록도 함께 갱신하세요.
+SQL의 FK를 추가·변경할 경우 `backend/app/db/render_erd.py`의 관계 목록도 함께 갱신하세요.
 SVG의 `?`는 NULL 허용을 뜻합니다.
 
 ```powershell
-uv run --directory backend --frozen python -X utf8 -m app.db.render_parts_erd
+uv run --directory backend --frozen python -X utf8 -m app.db.render_erd
 uv run --directory backend --frozen pytest tests/hardware_data -q
 
 # 실제 DB 제약 및 재실행 검사. 테스트용 행은 모두 롤백됨
