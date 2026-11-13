@@ -7,7 +7,7 @@ from copy import deepcopy
 
 import mysql.connector
 
-from app.core.parts_database import get_connection
+from app.db.connection import get_connection
 from app.domains.hardware.ingestion.common import DATA, read_json
 from app.domains.hardware.ingestion.import_compatibility import upsert_compatibility
 from app.domains.hardware.ingestion.import_parts import upsert_parts

@@ -5,7 +5,7 @@ import html
 import re
 from contextlib import closing
 
-from app.core.parts_database import get_connection
+from app.db.connection import get_connection
 from app.domains.hardware.ingestion.common import (
     CATEGORIES,
     DATA,

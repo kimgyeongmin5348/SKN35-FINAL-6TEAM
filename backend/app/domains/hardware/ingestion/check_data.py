@@ -4,8 +4,8 @@ import re
 from collections import Counter
 from contextlib import closing
 
-from app.core.parts_database import get_connection
-from app.db.parts_schema import SCHEMA_PATH
+from app.db.connection import get_connection
+from app.db.schema import SCHEMA_PATH
 from app.domains.hardware.ingestion.common import (
     DATA,
     TABLES,

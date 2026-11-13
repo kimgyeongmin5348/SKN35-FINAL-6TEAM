@@ -1,4 +1,4 @@
-"""Local MySQL connection and read-only connection check."""
+"""Check the local MySQL connection or initialize its schema."""
 
 import sys
 from contextlib import closing
@@ -6,7 +6,7 @@ from pathlib import Path
 
 import mysql.connector
 
-from app.core.parts_database import get_connection
+from app.db.connection import get_connection
 
 SCHEMA_PATH = Path(__file__).resolve().parent / "sql" / "parts_catalog.sql"
 

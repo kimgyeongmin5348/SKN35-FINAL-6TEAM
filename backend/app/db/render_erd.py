@@ -6,9 +6,9 @@ import shutil
 import subprocess
 from pathlib import Path
 
-from app.db.parts_schema import SCHEMA_PATH
+from app.db.schema import SCHEMA_PATH
 
-ERD = Path(__file__).resolve().parents[3] / "docs" / "erd" / "parts_catalog"
+ERD = Path(__file__).resolve().parents[3] / "docs" / "database" / "erd"
 
 LABELS = {
     "users": "사용자",

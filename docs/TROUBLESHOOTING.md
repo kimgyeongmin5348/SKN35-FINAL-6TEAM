@@ -1,6 +1,6 @@
 # 자주 막히는 문제 (TROUBLESHOOTING)
 
-> 이 문서는 기존 Mock 앱의 기록입니다. 현재 로컬 DB의 설치·검사 방법은 [DB 작업 안내](DATA_PIPELINE.md)를 참고하세요.
+> 이 문서는 기존 Mock 앱의 기록입니다. 현재 로컬 DB의 설치·검사 방법은 [DB 작업 안내](database/README.md)를 참고하세요.
 
 증상을 찾아 **확인 → 해결** 순서로 따라 하세요. 여기 없으면 [TEAM_GUIDE §15](TEAM_GUIDE.md#15-도움-요청하기) 형식으로 팀에 물어보세요.
 

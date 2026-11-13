@@ -23,7 +23,7 @@ def connection_settings() -> dict:
         prefix = "MYSQL_"
     else:
         raise ValueError(
-            ".env에 PARTS_MYSQL_* 부품 DB 설정을 입력해 주세요. docs/DATA_PIPELINE.md 참고."
+            ".env에 PARTS_MYSQL_* 부품 DB 설정을 입력해 주세요. docs/database/README.md 참고."
         )
 
     password = settings.get(prefix + "PASSWORD")
