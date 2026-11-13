@@ -1,6 +1,5 @@
 # 데이터
 
-- `fixtures/`: 팀 Mock 서비스에서 사용하는 가상 기업·상품 견본.
 - `hardware/`: 실제 부품 수집 원본, 검토 기록, 정규화 결과, 실행 보고서.
 
 Python 코드는 `backend/app/domains/hardware/ingestion/`, DB 연결은

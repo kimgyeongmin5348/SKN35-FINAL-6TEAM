@@ -4,7 +4,11 @@ from decimal import Decimal
 
 from app.domains.hardware.ingestion.common import DATA, price_value, read_json, sql_time
 from app.domains.hardware.ingestion.import_compatibility import validate_records
-from app.domains.hardware.ingestion.import_parts import normalize_parts, reviewed_price
+from app.domains.hardware.ingestion.import_parts import (
+    load_reviewed_specs,
+    normalize_parts,
+    reviewed_price,
+)
 from app.domains.hardware.ingestion.price_page import parse_component_price_page
 
 
@@ -77,7 +81,7 @@ class PipelineTests(unittest.TestCase):
 
     def test_initial_selection_and_unknown_product_exclusion(self):
         catalog = read_json(DATA / "raw/pc_builder/2026-11-11/pc-builder-parts.json")
-        specs = read_json(DATA / "raw/manufacturer/pilot_specs_review.json")
+        specs = load_reviewed_specs()
         rows, withheld = normalize_parts(catalog, self.matches, specs, [], "2026-11-11T06:00:00Z")
         self.assertEqual(len(rows), 28)
         self.assertEqual(len(withheld), 3)
@@ -88,6 +92,13 @@ class PipelineTests(unittest.TestCase):
             by_key["qvl-samsung-m323r2ga3db0-cwmod"]["model_number"], "M323R2GA3DB0-CWMOD"
         )
         self.assertEqual(by_key["mb-b650-tomahawk"]["specs"]["ram_max_gb"], 256)
+        self.assertIn(
+            "https://www.msi.com/Motherboard/MAG-B650-TOMAHAWK-WIFI/Specification",
+            [
+                source["url"]
+                for source in by_key["mb-b650-tomahawk"]["specs"]["_provenance"]["spec_sources"]
+            ],
+        )
         self.assertEqual(by_key["psu-850w-gold"]["specs"]["form_factor"], "ATX")
         self.assertEqual(by_key["psu-850w-gold"]["specs"]["atx_version"], "3.1")
         self.assertEqual(by_key["psu-msi-mpg-a850gs-pcie5"]["specs"]["gpu16"], 1)

@@ -25,6 +25,16 @@ def clean_name(value):
     return " ".join(re.sub(r"<[^>]*>", "", html.unescape(value or "")).split())
 
 
+def load_reviewed_specs():
+    reviewed = read_json(DATA / "raw/manufacturer/pilot_specs_review.json")
+    for key, fields in read_json(DATA / "reviewed_specs_overrides.json").items():
+        part = reviewed["parts"].setdefault(key, {})
+        sources = [*part.get("sources", []), *fields.get("sources", [])]
+        part.update(fields)
+        part["sources"] = list(dict.fromkeys(sources))
+    return reviewed
+
+
 def reviewed_price(match, observations):
     """Product code AND reviewed name must agree. Unreviewed delivery basis is withheld."""
     code = match.get("danawa_product_code")
@@ -139,11 +149,7 @@ def normalize_parts(catalog, matches, reviewed_specs, observations, checked_at):
             kit = re.fullmatch(r"(\d+)x(\d+)GB", specs["kit"])
             if kit:
                 specs["modules_per_item"], specs["module_capacity_gb"] = map(int, kit.groups())
-        if key == "mb-b650-tomahawk":
-            specs["ram_max_gb"] = 256
         sources = [reviewed_specs["sources"][s] for s in curated.get("sources", [])]
-        if key == "mb-b650-tomahawk":
-            sources.append(reviewed_specs["sources"]["b650"])
         primary_url = match.get("spec_source_url") or (
             sources[0]["url"] if sources else raw.get("source")
         )
@@ -266,7 +272,7 @@ def main():
     rows, withheld = normalize_parts(
         read_json(catalog_path),
         read_json(DATA / "part_matches.json")["parts"],
-        read_json(DATA / "raw/manufacturer/pilot_specs_review.json"),
+        load_reviewed_specs(),
         observations,
         utc_now(),
     )
